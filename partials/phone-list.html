@@ -1,44 +1,56 @@
-<div class="container form1">
-  <!--   <div class="row"> -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4">
 
-  <div class="form">
-    <div class="form-group">
-      <label>Name:
-      </label>
-      <input class="form-control" ng-model="user.username">
-    </div>
-    <div class="form-group">
-      <label>Email Address:</label>
-      <input class="form-control" ng-model="user.email">
+      <div class="form">
+        <div class="form-group">
+          <label>Name:</label>
+          <input class="form-control" ng-model="user.username">
+        </div>
+        <div class="form-group">
+          <label>Email Address:</label>
+          <input class="form-control" ng-model="user.email">
+        </div>
+        <div class="form-group">
+          <label>Room Height:</label>
+          <input class="form-control" ng-model="user.roomHeight">
+        </div>
+
+        <div class="form-group">
+          <label>Layout: </label>
+          <div class="input-group">
+            <span class="input-group-addon">X:</span>
+            <input class="form-control" type="number" ng-model="coordinate.xValue" ng-init="coordinate.xValue = 220">
+            <span class="input-group-addon">Y:</span>
+            <input class="form-control" type="number" ng-model="coordinate.yValue" ng-init="coordinate.yValue = 260">
+            <span class="input-group-btn"><button class="btn btn-default" ng-click="onAddCoordinate(coordinate)">Add</button></span>
+          </div>
+        </div>
+      </div>
+
+      <button ng-repeat="c in coordinates" type="button" class="btn btn-default btn-sm" ng-click="onDelCoordinate(c)">
+        ( {{c.xValue}} / {{c.yValue}} ) <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
     </div>
 
-    <div class="form-group">
-      <label>Layout: </label>
-      <div class="input-group">
-        <span class="input-group-addon">X</span>
-        <input class="form-control" type="number" ng-model="coordinate.xValue" ng-init="coordinate.xValue = 220">
-        <span class="input-group-addon">Y</span>
-        <input class="form-control" type="number" ng-model="coordinate.yValue" ng-init="coordinate.yValue = 260">
-        <span class="input-group-btn"><button  class="btn btn-default" ng-click="onAddCoordinate(coordinate)">Add </button></span>
+    <div class="col-lg-8">
+      <div style="width:410px;height:310px">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5" />
+            </pattern>
+            <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+              <rect width="100" height="100" fill="url(#smallGrid)" />
+              <path d="M 100 0 L 0 0 0 100" fill="none" stroke="gray" stroke-width="1" />
+            </pattern>
+          </defs>
+
+          <rect width="100%" height="100%" fill="url(#grid)" />
+          <path ng-attr-d="{{points}}" fill="none" stroke="#000" stroke-width="1" transform="translate(0, 300) scale(1,-1)" />
+
+        </svg>
       </div>
     </div>
   </div>
-
-  <div>
-    <span ng-repeat="c in coordinates ">
-    ( {{c.xValue}} / {{c.yValue}} )
-  </span>
-  </div>
-
-  <div class="border1">
-    <svg height="300" width="550">
-      <path ng-attr-d="{{points}}" fill="none" stroke="#999" stroke-width="3" /> Sorry, your browser does not support inline SVG.
-    </svg>
-  </div>
-
-  <!--   <svg height="210" width="500">
-  <polygon ng-attr-points="{{points}}" style="fill:lime;stroke:purple;stroke-width:1" />
-</svg> -->
-</div>
-</div>
 </div>

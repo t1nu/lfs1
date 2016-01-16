@@ -15,7 +15,7 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
     };
      
     $scope.getSvgPoints = function(arr) {
-      var s ="M10 10";
+      var s ="M0 0";
       for(var i=0; i < arr.length; i++) {
         s = s + ' L' + arr[i].xValue + ',' + arr[i].yValue;
       }
@@ -23,11 +23,11 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
     }
 
     $scope.coordinates = [{
-      "xValue": "10",
-      "yValue": "10"
+      "xValue": "0",
+      "yValue": "0"
     }, {
       "xValue": "120",
-      "yValue": "10"
+      "yValue": "0"
     }, {
       "xValue": "120",
       "yValue": "60"
@@ -40,6 +40,14 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
       $scope.coordinates.push(angular.copy(c));
       $scope.points = $scope.getSvgPoints($scope.coordinates); 
 //       "200,10 250,190 160,210 100,100";
+    }
+    
+    $scope.onDelCoordinate = function(c) {
+      
+  var index = $scope.coordinates.indexOf(c);
+  $scope.coordinates.splice(index, 1);
+      $scope.points = $scope.getSvgPoints($scope.coordinates); 
+//       $scope.coordinates.remove(c);
     }
   }
 ]);
