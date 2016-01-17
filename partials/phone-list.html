@@ -1,9 +1,12 @@
-<div class="container-fluid">
+<div class="page-header">
+  <h1>&nbsp;WaveBusters <small>LF Simulation</small></h1>
+</div>
+<div id="foo" class="container-fluid">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
 
       <div class="form">
-        <div class="form-group">
+        <!--         <div class="form-group">
           <label>Name:</label>
           <input class="form-control" ng-model="user.username">
         </div>
@@ -14,7 +17,7 @@
         <div class="form-group">
           <label>Room Height:</label>
           <input class="form-control" ng-model="user.roomHeight">
-        </div>
+        </div> -->
 
         <div class="form-group">
           <label>Layout: </label>
@@ -28,12 +31,20 @@
         </div>
       </div>
 
-      <button ng-repeat="c in coordinates" type="button" class="btn btn-default btn-sm" ng-click="onDelCoordinate(c)">
-        ( {{c.xValue}} / {{c.yValue}} ) <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-      </button>
+      <div>
+        <button ng-repeat="c in coordinates" type="button" class="btn btn-default btn-sm" ng-click="onDelCoordinate(c)">
+          ( {{c.xValue}} / {{c.yValue}} ) <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div>
+        <br>
+        <button type="button" class="btn btn-default" ng-click="onDelAllCoordinates()"><span class="glyphicon glyphicon-trash"></span> Reset</button>
+      </div>
+      
+
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-9">
       <div ng-attr-style={{layoutStyle}}>
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -46,7 +57,7 @@
             </pattern>
           </defs>
 
-          <rect width="100%" height="100%" fill="url(#grid)" ng-attr-transform="translate(5, {{yMax+20-5}}) scale(1,-1)"/>
+          <rect width="100%" height="100%" fill="url(#grid)" ng-attr-transform="translate(5, {{yMax+20-5}}) scale(1,-1)" />
           <path ng-attr-d="{{points}}" fill="none" stroke="#000" stroke-width="1" ng-attr-transform="translate(5, {{yMax+20-5}}) scale(1,-1)" />
 
         </svg>

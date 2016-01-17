@@ -69,6 +69,11 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
       $scope.coordinates.splice(index, 1);
       $scope.points = $scope.getSvgPoints($scope.coordinates);
     }
+    
+    $scope.onDelAllCoordinates = function() {
+      $scope.coordinates = [];
+      $scope.points = $scope.getSvgPoints($scope.coordinates);
+    }
   }
 ]);
 
