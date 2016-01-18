@@ -5,19 +5,22 @@ var phonecatDirectives = angular.module('phonecatDirectives', []);
 phonecatDirectives.directive('lfsNavbar', ['$location', 'Datamodel', function($location, Datamodel) {
   return {
     restrict: 'E',
-    scope: {
-    },
     link: function(scope, element, attrs, tabsCtrl) {      
-      scope.first = function() {
-        console.log(Datamodel.state);
-        return Datamodel.state.currentState === 0;
+      scope.isNotFirstState = function() {
+        return Datamodel.state.isNotFirstState();
       }
+      scope.isNotLastState = function() {
+        return Datamodel.state.isNotLastState();
+      }     
       scope.next = function() {
-        $location.path('/' + Datamodel.nextState());
+        $location.path('/' + Datamodel.state.nextState());
       }
       scope.back = function() {
-        $location.path('/' + Datamodel.prevState());
-      }      
+        $location.path('/' + Datamodel.state.prevState());
+      }  
+      scope.submit = function() {
+        Datamodel.submit();
+      }
     },
     templateUrl: 'partials/lfs-navbar.html'
   };

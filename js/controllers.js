@@ -4,7 +4,7 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Datamodel',
+phonecatControllers.controller('RequestStepUserCtrl', ['$scope', 'Datamodel',
   function($scope, Datamodel) {
     $scope.user = Datamodel.user;
   }
@@ -46,5 +46,12 @@ phonecatControllers.controller('RequestStepSenderReceiverCtrl', ['$scope', 'Data
       $scope.model.receiver = angular.copy(c);
     }
 
+  }
+]);
+
+phonecatControllers.controller('RequestStepConfirmCtrl', ['$scope', 'Datamodel',
+  function($scope, Datamodel) {
+    $scope.model = Datamodel.model;
+    $scope.user = Datamodel.user;
   }
 ]);

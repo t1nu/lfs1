@@ -6,27 +6,32 @@ var phonecatServices = angular.module('phonecatServices', ['ngResource']);
 
 phonecatServices.factory('Datamodel',
   function() {
-    var states = ['phones', 'requestStepLayout', 'requestStepSenderReceiver'];
-    var currentState = 0;
+
     var state = {
-      "currentState": 0
+      "currentState": 0,
+      "states": ['requestStepUser', 'requestStepLayout', 'requestStepSenderReceiver', 'requestStepConfirm'],
+      "isNotFirstState": function() {
+        return this.currentState > 0;
+      },
+      "isNotLastState": function() {
+        return this.currentState < this.states.length - 1;
+      },
+      "nextState": function() {
+        if (this.isNotLastState()) {
+          this.currentState = this.currentState + 1;
+        }
+        return this.states[this.currentState];
+      },
+      "prevState": function() {
+        if (this.isNotFirstState()) {
+          this.currentState = this.currentState - 1;
+        }
+        return this.states[this.currentState];
+      }
     };
 
-    function nextState() {
-      if (state.currentState < states.length - 1) {
-        state.currentState = state.currentState + 1;
-      }
-      return states[state.currentState];
-    }
-
-    function prevState() {
-      if (state.currentState > 0) {
-        state.currentState = state.currentState - 1;
-      }
-      return states[state.currentState];
-    }
-
     var model = {
+      "roomheight": 344,
       "coordinates": {},
       "sources": []
     };
@@ -57,14 +62,15 @@ phonecatServices.factory('Datamodel',
       "xValue": "0",
       "yValue": "0"
     }];
+  
+    function submit() {
+      console.log('submit!');
+    }
 
     return {
       model: model,
       user: user,
-      states: states,
       state: state,
-      currentState: currentState,
-      nextState: nextState,
-      prevState: prevState
+      submit: submit
     };
   });
