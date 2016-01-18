@@ -4,8 +4,8 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone', 'Datamodel',
-  function($scope, Phone, Datamodel) {
+phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Datamodel',
+  function($scope, Datamodel) {
     $scope.user = {
       "username": "john",
       "email": "john@gmail.com"
@@ -28,8 +28,8 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone', 'Datamodel',
   }
 ]);
 
-phonecatControllers.controller('RequestStep1Ctrl', ['$scope', 'Phone', 'Datamodel',
-  function($scope, Phone, Datamodel) {
+phonecatControllers.controller('RequestStep1Ctrl', ['$scope', 'Datamodel',
+  function($scope, Datamodel) {
     $scope.model = Datamodel.model;
 
     $scope.onAddSource = function(c) {
