@@ -2,6 +2,27 @@
 
 var phonecatDirectives = angular.module('phonecatDirectives', []);
 
+phonecatDirectives.directive('lfsNavbar', ['$location', 'Datamodel', function($location, Datamodel) {
+  return {
+    restrict: 'E',
+    scope: {
+    },
+    link: function(scope, element, attrs, tabsCtrl) {      
+      scope.first = function() {
+        console.log(Datamodel.state);
+        return Datamodel.state.currentState === 0;
+      }
+      scope.next = function() {
+        $location.path('/' + Datamodel.nextState());
+      }
+      scope.back = function() {
+        $location.path('/' + Datamodel.prevState());
+      }      
+    },
+    templateUrl: 'partials/lfs-navbar.html'
+  };
+}]);
+
 phonecatDirectives.directive('lfsLayout', function() {
   return {
     restrict: 'E',
@@ -34,7 +55,6 @@ phonecatDirectives.directive('lfsLayout', function() {
       scope.$watchCollection('datamodel.coordinates', function(newNames, oldNames) {
         scope.points = getSvgPoints(newNames);
       })
-//       scope.receiver = scope.datamodel.receiver;
     },
     templateUrl: 'partials/lfs-layout.html'
   };

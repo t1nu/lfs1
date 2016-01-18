@@ -6,6 +6,26 @@ var phonecatServices = angular.module('phonecatServices', ['ngResource']);
 
 phonecatServices.factory('Datamodel',
   function() {
+    var states = ['phones', 'requestStepLayout', 'requestStepSenderReceiver'];
+    var currentState = 0;
+    var state = {
+      "currentState": 0
+    };
+
+    function nextState() {
+      if (state.currentState < states.length - 1) {
+        state.currentState = state.currentState + 1;
+      }
+      return states[state.currentState];
+    }
+
+    function prevState() {
+      if (state.currentState > 0) {
+        state.currentState = state.currentState - 1;
+      }
+      return states[state.currentState];
+    }
+
     var model = {
       "coordinates": {},
       "sources": []
@@ -40,6 +60,11 @@ phonecatServices.factory('Datamodel',
 
     return {
       model: model,
-      user: user
+      user: user,
+      states: states,
+      state: state,
+      currentState: currentState,
+      nextState: nextState,
+      prevState: prevState
     };
   });
