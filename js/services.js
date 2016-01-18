@@ -7,6 +7,48 @@ var phonecatServices = angular.module('phonecatServices', ['ngResource']);
 phonecatServices.factory('Datamodel',
   function() {
 
+    var loadData = function() {
+      AWS.config.update({
+        accessKeyId: '',
+        secretAccessKey: ''
+      });
+      AWS.config.update({
+        region: 'eu-west-1'
+      });
+
+      console.log('loadData');
+
+      AWS.config.update({
+        region: "eu-central-1",
+        endpoint: "arn:aws:dynamodb:eu-central-1:490584225730:table/lfsRequest"
+      });
+
+      var docClient = new AWS.DynamoDB.DocumentClient();
+
+      var table = "lfsRequest";
+
+      var requestId = 1000;
+
+      var params = {
+        TableName: table,
+        Item: {
+          "requestId": requestId,
+          "info": {
+            "plot": "Something happens."
+          }
+        }
+      };
+
+      console.log("Adding a new item...");
+      docClient.put(params, function(err, data) {
+        if (err) {
+          console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+          console.log("Added item:", JSON.stringify(data, null, 2));
+        }
+      });
+    };
+
     var state = {
       "currentState": 0,
       "states": ['requestStepUser', 'requestStepLayout', 'requestStepSenderReceiver', 'requestStepConfirm'],
@@ -62,7 +104,7 @@ phonecatServices.factory('Datamodel',
       "xValue": "0",
       "yValue": "0"
     }];
-  
+
     function submit() {
       console.log('submit!');
     }
@@ -71,6 +113,7 @@ phonecatServices.factory('Datamodel',
       model: model,
       user: user,
       state: state,
-      submit: submit
+      submit: submit,
+      loadData: loadData
     };
   });

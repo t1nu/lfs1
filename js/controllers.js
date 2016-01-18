@@ -4,6 +4,12 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
+phonecatControllers.controller('HomeCtrl', ['$scope', 'Datamodel',
+  function($scope, Datamodel) {
+    Datamodel.loadData();
+  }
+]);
+
 phonecatControllers.controller('RequestStepUserCtrl', ['$scope', 'Datamodel',
   function($scope, Datamodel) {
     $scope.user = Datamodel.user;

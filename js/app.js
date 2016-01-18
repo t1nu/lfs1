@@ -17,7 +17,7 @@ phonecatApp.config(['$routeProvider',
     $routeProvider.
       when('/home', {
         templateUrl: 'partials/home.html',
-        controller: 'RequestStepUserCtrl'
+        controller: 'HomeCtrl'
       }).
       when('/requestStepUser', {
         templateUrl: 'partials/request-step-user.html',
