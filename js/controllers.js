@@ -4,71 +4,46 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
-  function($scope, Phone) {
+phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone', 'Datamodel',
+  function($scope, Phone, Datamodel) {
     $scope.user = {
       "username": "john",
       "email": "john@gmail.com"
     };
 
-    $scope.model = {
-      "coordinates": {}
-    };
-    $scope.model.coordinates = [{
-      "xValue": "0",
-      "yValue": "0"
-    }, {
-      "xValue": "120",
-      "yValue": "0"
-    }, {
-      "xValue": "120",
-      "yValue": "60"
-    }, {
-      "xValue": "220",
-      "yValue": "60"
-    }, {
-      "xValue": "220",
-      "yValue": "260"
-    }, {
-      "xValue": "0",
-      "yValue": "260"
-    }, {
-      "xValue": "0",
-      "yValue": "0"
-    }];
+    $scope.model = Datamodel.model;
 
-    $scope.test = 1;
     $scope.onAddCoordinate = function(c) {
       $scope.model.coordinates.push(angular.copy(c));
-      $scope.test = $scope.test + 1;
-      //         $scope.points = getSvgPoints(scope.coordinates);
     }
-
 
     $scope.onDelCoordinate = function(c) {
       var index = $scope.model.coordinates.indexOf(c);
       $scope.model.coordinates.splice(index, 1);
-      //       $scope.points = $scope.getSvgPoints($scope.coordinates);
     }
 
     $scope.onDelAllCoordinates = function() {
       $scope.model.coordinates = [];
-      //       $scope.points = $scope.getSvgPoints($scope.coordinates);
     }
   }
 ]);
 
+phonecatControllers.controller('RequestStep1Ctrl', ['$scope', 'Phone', 'Datamodel',
+  function($scope, Phone, Datamodel) {
+    $scope.model = Datamodel.model;
 
-// phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
-//   function($scope, $routeParams, Phone) {
-//     $scope.phone = Phone.get({
-//       phoneId: $routeParams.phoneId
-//     }, function(phone) {
-//       $scope.mainImageUrl = phone.images[0];
-//     });
+    $scope.onAddSource = function(c) {
+      $scope.model.sources.push(angular.copy(c));
+    }
 
-//     $scope.setImage = function(imageUrl) {
-//       $scope.mainImageUrl = imageUrl;
-//     }
-//   }
-// ]);
+    $scope.onDelSource = function(c) {
+      var index = $scope.model.sources.indexOf(c);
+      $scope.model.sources.splice(index, 1);
+    }
+        
+    $scope.onSetReceiver = function(c) {
+      $scope.model.receiver = angular.copy(c);
+    }
+
+  }
+]);

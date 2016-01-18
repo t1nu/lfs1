@@ -24,7 +24,7 @@ phonecatApp.config(['$routeProvider',
         controller: 'PhoneDetailCtrl'
       }).
       when('/requestStep1', {
-        templateUrl: 'partials/request-step1.html',
+        templateUrl: 'partials/request-step1-ctrl.html',
         controller: 'RequestStep1Ctrl'
       }).
       otherwise({
