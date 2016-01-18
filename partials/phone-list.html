@@ -1,6 +1,3 @@
-<div class="page-header">
-  <h1>&nbsp;WaveBusters <small>LF Simulation</small></h1>
-</div>
 <div id="foo" class="container-fluid">
   <div class="row">
     <div class="col-lg-3">
@@ -26,20 +23,24 @@
             <input class="form-control" type="number" ng-model="coordinate.xValue" ng-init="coordinate.xValue = 220">
             <span class="input-group-addon">Y:</span>
             <input class="form-control" type="number" ng-model="coordinate.yValue" ng-init="coordinate.yValue = 260">
-            <span class="input-group-btn"><button class="btn btn-default" ng-click="onAddCoordinate(coordinate)">Add</button></span>
+            <span class="input-group-btn"><button class="btn btn-primary" ng-click="onAddCoordinate(coordinate)">Add</button></span>
           </div>
         </div>
       </div>
 
       <div>
-        <button ng-repeat="c in model.coordinates" type="button" class="btn btn-default btn-sm" ng-click="onDelCoordinate(c)">
+        <span ng-repeat="c in model.coordinates">
+        <button type="button" style="margin-top:5px" class="btn btn-default btn-sm" ng-click="onDelCoordinate(c)">
           ( {{c.xValue}} / {{c.yValue}} ) <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
+        </button></span>
       </div>
       <div>
         <br>
-        <button type="button" class="btn btn-default" ng-click="onDelAllCoordinates()"><span class="glyphicon glyphicon-trash"></span> Reset</button>
+        <button type="button" class="btn btn-default" ng-click="onDelAllCoordinates()"><span class="glyphicon glyphicon-trash"></span> Reset</button>        
       </div>      
+      <div>
+        <a href="#/requestStep1">Next Step</a>
+      </div>
     </div>
 
     <div class="col-lg-9">

@@ -33,7 +33,8 @@ phonecatDirectives.directive('lfsLayout', function() {
       scope.layoutStyle = "width:405px;height:305px";
       scope.$watchCollection('datamodel.coordinates', function(newNames, oldNames) {
         scope.points = getSvgPoints(newNames);
-      });
+      })
+//       scope.receiver = scope.datamodel.receiver;
     },
     templateUrl: 'partials/lfs-layout.html'
   };

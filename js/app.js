@@ -23,6 +23,10 @@ phonecatApp.config(['$routeProvider',
         templateUrl: 'partials/phone-detail.html',
         controller: 'PhoneDetailCtrl'
       }).
+      when('/requestStep1', {
+        templateUrl: 'partials/request-step1.html',
+        controller: 'RequestStep1Ctrl'
+      }).
       otherwise({
         redirectTo: '/phones'
       });

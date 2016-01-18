@@ -15,5 +15,12 @@
     
     <path ng-attr-d="{{points}}" fill="none" stroke="#000" stroke-width="1" ng-attr-transform="translate(5, {{yMax+20-5}}) scale(1,-1)" />
 
+    
+    <circle ng-if="datamodel.sources" ng-repeat="c in datamodel.sources" ng-attr-cx="{{c.xValue}}" ng-attr-cy="{{c.yValue}}" 
+            r="5" stroke="red" stroke-width="2" fill="none" ng-attr-transform="translate(5, {{yMax+20-5}}) scale(1,-1)"/>
+    
+    <circle ng-if="datamodel.receiver" ng-attr-cx="{{datamodel.receiver.xValue}}" ng-attr-cy="{{datamodel.receiver.yValue}}" 
+            r="5" stroke="blue" stroke-width="2" fill="none" ng-attr-transform="translate(5, {{yMax+20-5}}) scale(1,-1)"/>
   </svg>
 </div>
+<pre>{{datamodel.receiver}}</pre>
