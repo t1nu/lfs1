@@ -4,26 +4,17 @@
 
 var phonecatServices = angular.module('phonecatServices', ['ngResource']);
 
-// phonecatServices.factory('Phone', ['$resource',
-//   function($resource) {
-//     return $resource('phones/:phoneId.json', {}, {
-//       query: {
-//         method: 'GET',
-//         params: {
-//           phoneId: 'phones'
-//         },
-//         isArray: true
-//       }
-//     });
-//   }
-// ]);
-
 phonecatServices.factory('Datamodel',
   function() {
     var model = {
       "coordinates": {},
       "sources": []
     };
+    var user = {
+      "username": "john",
+      "email": "john@gmail.com"
+    };
+
     model.coordinates = [{
       "xValue": "0",
       "yValue": "0"
@@ -48,6 +39,7 @@ phonecatServices.factory('Datamodel',
     }];
 
     return {
-      model: model
+      model: model,
+      user: user
     };
   });

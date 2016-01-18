@@ -23,9 +23,13 @@ phonecatApp.config(['$routeProvider',
         templateUrl: 'partials/phone-detail.html',
         controller: 'PhoneDetailCtrl'
       }).
-      when('/requestStep1', {
-        templateUrl: 'partials/request-step1-ctrl.html',
-        controller: 'RequestStep1Ctrl'
+      when('/requestStepLayout', {
+        templateUrl: 'partials/request-step-layout.html',
+        controller: 'RequestStepLayoutCtrl'
+      }).
+      when('/requestStepSenderReceiver', {
+        templateUrl: 'partials/request-step-sender-receiver.html',
+        controller: 'RequestStepSenderReceiverCtrl'
       }).
       otherwise({
         redirectTo: '/phones'

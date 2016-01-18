@@ -6,12 +6,13 @@ var phonecatControllers = angular.module('phonecatControllers', []);
 
 phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Datamodel',
   function($scope, Datamodel) {
-    $scope.user = {
-      "username": "john",
-      "email": "john@gmail.com"
-    };
+    $scope.user = Datamodel.user;
+  }
+]);
 
-    $scope.model = Datamodel.model;
+phonecatControllers.controller('RequestStepLayoutCtrl', ['$scope', 'Datamodel',
+  function($scope, Datamodel) {
+   $scope.model = Datamodel.model;
 
     $scope.onAddCoordinate = function(c) {
       $scope.model.coordinates.push(angular.copy(c));
@@ -28,7 +29,7 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Datamodel',
   }
 ]);
 
-phonecatControllers.controller('RequestStep1Ctrl', ['$scope', 'Datamodel',
+phonecatControllers.controller('RequestStepSenderReceiverCtrl', ['$scope', 'Datamodel',
   function($scope, Datamodel) {
     $scope.model = Datamodel.model;
 

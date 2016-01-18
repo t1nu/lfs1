@@ -1,9 +1,9 @@
 <div id="foo" class="container-fluid">
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-4">
 
       <div class="form">
-        <!--         <div class="form-group">
+        <div class="form-group">
           <label>Name:</label>
           <input class="form-control" ng-model="user.username">
         </div>
@@ -11,40 +11,10 @@
           <label>Email Address:</label>
           <input class="form-control" ng-model="user.email">
         </div>
-        <div class="form-group">
-          <label>Room Height:</label>
-          <input class="form-control" ng-model="user.roomHeight">
-        </div> -->
-
-        <div class="form-group">
-          <label>Layout: </label>
-          <div class="input-group">
-            <span class="input-group-addon">X:</span>
-            <input class="form-control" type="number" ng-model="coordinate.xValue" ng-init="coordinate.xValue = 220">
-            <span class="input-group-addon">Y:</span>
-            <input class="form-control" type="number" ng-model="coordinate.yValue" ng-init="coordinate.yValue = 260">
-            <span class="input-group-btn"><button class="btn btn-primary" ng-click="onAddCoordinate(coordinate)">Add</button></span>
-          </div>
+        <div>
+          <a href="#/requestStepLayout">Next Step</a>
         </div>
       </div>
 
-      <div>
-        <span ng-repeat="c in model.coordinates">
-        <button type="button" style="margin-top:5px" class="btn btn-default btn-sm" ng-click="onDelCoordinate(c)">
-          ( {{c.xValue}} / {{c.yValue}} ) <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button></span>
-      </div>
-      <div>
-        <br>
-        <button type="button" class="btn btn-default" ng-click="onDelAllCoordinates()"><span class="glyphicon glyphicon-trash"></span> Reset</button>        
-      </div>      
-      <div>
-        <a href="#/requestStep1">Next Step</a>
-      </div>
-    </div>
-
-    <div class="col-lg-9">
-      <lfs-layout datamodel="model"></lfs-layout>
     </div>
   </div>
-</div>
