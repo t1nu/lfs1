@@ -9,18 +9,13 @@ phonecatServices.factory('Datamodel',
 
     var loadData = function() {
       AWS.config.update({
-        accessKeyId: '',
-        secretAccessKey: ''
-      });
-      AWS.config.update({
-        region: 'eu-west-1'
       });
 
       console.log('loadData');
 
       AWS.config.update({
-        region: "eu-central-1",
-        endpoint: "arn:aws:dynamodb:eu-central-1:490584225730:table/lfsRequest"
+        region: "eu-west-1",
+        endpoint: "https://dynamodb.eu-west-1.amazonaws.com"
       });
 
       var docClient = new AWS.DynamoDB.DocumentClient();
@@ -72,38 +67,43 @@ phonecatServices.factory('Datamodel',
       }
     };
 
-    var model = {
-      "roomheight": 344,
-      "coordinates": {},
+    var user = {};
+    var model = {      
+      "coordinates": [],
       "sources": []
     };
-    var user = {
-      "username": "john",
-      "email": "john@gmail.com"
-    };
+//     var model = {
+//       "roomheight": 344,
+//       "coordinates": {},
+//       "sources": []
+//     };
+//     var user = {
+//       "username": "john",
+//       "email": "john@gmail.com"
+//     };
 
-    model.coordinates = [{
-      "xValue": "0",
-      "yValue": "0"
-    }, {
-      "xValue": "120",
-      "yValue": "0"
-    }, {
-      "xValue": "120",
-      "yValue": "60"
-    }, {
-      "xValue": "220",
-      "yValue": "60"
-    }, {
-      "xValue": "220",
-      "yValue": "260"
-    }, {
-      "xValue": "0",
-      "yValue": "260"
-    }, {
-      "xValue": "0",
-      "yValue": "0"
-    }];
+//     model.coordinates = [{
+//       "xValue": "0",
+//       "yValue": "0"
+//     }, {
+//       "xValue": "120",
+//       "yValue": "0"
+//     }, {
+//       "xValue": "120",
+//       "yValue": "60"
+//     }, {
+//       "xValue": "220",
+//       "yValue": "60"
+//     }, {
+//       "xValue": "220",
+//       "yValue": "260"
+//     }, {
+//       "xValue": "0",
+//       "yValue": "260"
+//     }, {
+//       "xValue": "0",
+//       "yValue": "0"
+//     }];
 
     function submit() {
       console.log('submit!');
