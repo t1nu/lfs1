@@ -55,9 +55,18 @@ phonecatControllers.controller('RequestStepSenderReceiverCtrl', ['$scope', 'Data
   }
 ]);
 
-phonecatControllers.controller('RequestStepConfirmCtrl', ['$scope', 'Datamodel',
-  function($scope, Datamodel) {
+phonecatControllers.controller('RequestStepConfirmCtrl', ['$scope', 'Datamodel','RestService',
+  function($scope, Datamodel, RestService) {
     $scope.model = Datamodel.model;
     $scope.user = Datamodel.user;
+    // $scope.submit = function(){
+      console.log('ctrl submit!')
+      var request = {
+        "request_id": 1001,
+        "request_user": $scope.user,
+        "model": $scope.model
+      };
+      RestService.postRequest(request);
+    // }
   }
 ]);

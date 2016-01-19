@@ -5,6 +5,9 @@ var phonecatDirectives = angular.module('phonecatDirectives', []);
 phonecatDirectives.directive('lfsNavbar', ['$location', 'Datamodel', function($location, Datamodel) {
   return {
     restrict: 'E',
+    scope: {
+      submitFn: '='
+    },
     link: function(scope, element, attrs, tabsCtrl) {      
       scope.isNotFirstState = function() {
         return Datamodel.state.isNotFirstState();
@@ -19,7 +22,7 @@ phonecatDirectives.directive('lfsNavbar', ['$location', 'Datamodel', function($l
         $location.path('/' + Datamodel.state.prevState());
       }  
       scope.submit = function() {
-        Datamodel.submit();
+        scope.submitFn();
       }
     },
     templateUrl: 'partials/lfs-navbar.html'
