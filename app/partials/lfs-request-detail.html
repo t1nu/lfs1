@@ -13,15 +13,15 @@
   </tr>
   <tr>
     <td>Room Coordinates:</td>
-    <td><span ng-repeat="c in model.coordinates">({{c.xValue}}/{{c.yValue}})&nbsp;</span></td>
+    <td><span ng-repeat="c in model.coordinates"><lfs-coordinate coordinate="c"></lfs-coordinate></span></td>
   </tr>
   <tr>
     <td>Source Coordinates:</td>
-    <td><span ng-repeat="c in model.sources">({{c.xValue}}/{{c.yValue}}/{{c.zValue}})&nbsp;</span></td>
+    <td><span ng-repeat="c in model.sources"><lfs-coordinate coordinate="c"></lfs-coordinate></span></td>
   </tr>
   <tr>
     <td>Receiver Coordinates:</td>
-    <td><span>({{model.receiver.xValue}}/{{model.receiver.yValue}}/{{model.receiver.zValue}})</span></td>
+    <td><span><lfs-coordinate coordinate="model.receiver"></lfs-coordinate></span></td>
   </tr>
   <tr>
     <td>Layout:</td>
