@@ -8,7 +8,7 @@
         <div class="panel-body">
           
           <p>
-            Define position and height of one or more sender and one receiver.
+            Define position (x/y) and height (z) of one or more sender and one receiver. 
           </p>
 
           <div class="form">
@@ -16,11 +16,11 @@
             <div class="form-group">
               <label>Sources: </label>
               <div class="input-group">
-                <span class="input-group-addon">X:</span>
+                <span class="input-group-addon">x:</span>
                 <input class="form-control" type="number" ng-model="coordinate.xValue">
-                <span class="input-group-addon">Y:</span>
+                <span class="input-group-addon">y:</span>
                 <input class="form-control" type="number" ng-model="coordinate.yValue">
-                <span class="input-group-addon">Z:</span>
+                <span class="input-group-addon">z:</span>
                 <input class="form-control" type="number" ng-model="coordinate.zValue">
                 <span class="input-group-btn"><button class="btn btn-primary" ng-click="onAddSource(coordinate)">Add</button></span>
               </div>
@@ -37,11 +37,11 @@
             <div class="form-group">
               <label>Receiver: </label>
               <div class="input-group">
-                <span class="input-group-addon">X:</span>
+                <span class="input-group-addon">x:</span>
                 <input class="form-control" type="number" ng-model="receiver.xValue">
-                <span class="input-group-addon">Y:</span>
+                <span class="input-group-addon">y:</span>
                 <input class="form-control" type="number" ng-model="receiver.yValue">
-                <span class="input-group-addon">Z:</span>
+                <span class="input-group-addon">z:</span>
                 <input class="form-control" type="number" ng-model="receiver.zValue">
                 <span class="input-group-btn"><button class="btn btn-primary" ng-click="onSetReceiver(receiver)">Set</button></span>
               </div>

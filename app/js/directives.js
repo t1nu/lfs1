@@ -5,9 +5,6 @@ var phonecatDirectives = angular.module('phonecatDirectives', []);
 phonecatDirectives.directive('lfsLayout', function() {
   return {
     restrict: 'E',
-    // scope: {
-    //   datamodel: '&'
-    // },
     link: function(scope, element, attrs, tabsCtrl) {
 
       function getSvgPoints(arr) {
