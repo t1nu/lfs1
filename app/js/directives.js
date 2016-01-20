@@ -8,19 +8,19 @@ phonecatDirectives.directive('lfsNavbar', ['$location', 'Datamodel', function($l
     scope: {
       submitFn: '='
     },
-    link: function(scope, element, attrs, tabsCtrl) {      
+    link: function(scope, element, attrs, tabsCtrl) {
       scope.isNotFirstState = function() {
         return Datamodel.state.isNotFirstState();
       }
       scope.isNotLastState = function() {
         return Datamodel.state.isNotLastState();
-      }     
+      }
       scope.next = function() {
         $location.path('/' + Datamodel.state.nextState());
       }
       scope.back = function() {
         $location.path('/' + Datamodel.state.prevState());
-      }  
+      }
       scope.submit = function() {
         scope.submitFn();
       }
@@ -42,14 +42,16 @@ phonecatDirectives.directive('lfsLayout', function() {
         scope.yMax = 305;
         var padding = 20;
         var s = "M0 0";
-        for (var i = 0; i < arr.length; i++) {
-          var item = arr[i];
-          s = s + ' L' + arr[i].xValue + ',' + arr[i].yValue;
-          if (item.xValue > scope.xMax) {
-            scope.xMax = item.xValue;
-          }
-          if (item.yValue > scope.yMax) {
-            scope.yMax = item.yValue;
+        if (angular.isDefined(arr)) {
+          for (var i = 0; i < arr.length; i++) {
+            var item = arr[i];
+            s = s + ' L' + arr[i].xValue + ',' + arr[i].yValue;
+            if (item.xValue > scope.xMax) {
+              scope.xMax = item.xValue;
+            }
+            if (item.yValue > scope.yMax) {
+              scope.yMax = item.yValue;
+            }
           }
         }
 

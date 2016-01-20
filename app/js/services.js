@@ -4,8 +4,8 @@
 
 var phonecatServices = angular.module('phonecatServices', ['ngResource']);
 
-phonecatServices.factory('Datamodel',
-  function() {
+phonecatServices.factory('Datamodel', ['RestService', '$q',
+  function(RestService, $q) {
 
     var state = {
       "currentState": 0,
@@ -68,10 +68,47 @@ phonecatServices.factory('Datamodel',
       "yValue": "0"
     }];
 
+    var list = [];
+
+    var getRequestList = function() {
+      var deferred = $q.defer();
+      var promise = deferred.promise;
+
+      if (list.length == 0) {
+        RestService.getRequestList().then(function(response) {
+          console.log(response);
+          list = response.data;
+          deferred.resolve(list);
+        });
+      }
+      else {
+        deferred.resolve(list);
+      }
+      return promise;
+    }
+
+    var getRequestById = function(id) {
+      var deferred = $q.defer();
+      var promise = deferred.promise;
+      
+      getRequestList().then(function(list) {
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].request_id == id) {
+            deferred.resolve(list[i]);
+          }
+        }
+      }, function(){
+        deferred.reject();
+      });
+      return promise;
+    }
 
     return {
       model: model,
       user: user,
-      state: state
+      state: state,
+      getRequestList: getRequestList,
+      getRequestById: getRequestById
     };
-  });
+  }
+]);

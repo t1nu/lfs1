@@ -28,7 +28,6 @@
     "commit": "02c28ba360ace48c62b23e06be61e26843ad9dca"
   },
   "_source": "git://github.com/aws/aws-sdk-js.git",
-  "_target": "~2.2.30",
-  "_originalSource": "aws-sdk",
-  "_direct": true
+  "_target": "2.2.30",
+  "_originalSource": "aws-sdk"
 }

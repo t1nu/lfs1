@@ -35,6 +35,14 @@ phonecatApp.config(['$routeProvider',
         templateUrl: 'partials/request-step-confirm.html',
         controller: 'RequestStepConfirmCtrl'
       }).
+      when('/requestList', {
+        templateUrl: 'partials/request-list.html',
+        controller: 'RequestListCtrl'
+      }).
+      when('/requestDetail/:requestId', {
+        templateUrl: 'partials/request-detail.html',
+        controller: 'RequestDetailCtrl'
+      }).
       otherwise({
         redirectTo: '/home'
       });

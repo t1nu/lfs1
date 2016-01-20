@@ -9,39 +9,7 @@
           <p>Please review all information.</p>
         </div>
 
-        <!-- Table -->
-        <table class="table">
-          <tr>
-            <td>Name:</td>
-            <td>{{user.username}}</td>
-          </tr>
-          <tr>
-            <td>Email address:</td>
-            <td>{{user.email}}</td>
-          </tr>
-          <tr>
-            <td>Room Height:</td>
-            <td>{{model.roomheight}}</td>
-          </tr>
-          <tr>
-            <td>Room Coordinates:</td>
-            <td><span ng-repeat="c in model.coordinates">({{c.xValue}}/{{c.yValue}})&nbsp;</span></td>
-          </tr>
-          <tr>
-            <td>Source Coordinates:</td>
-            <td><span ng-repeat="c in model.sources">({{c.xValue}}/{{c.yValue}}/{{c.zValue}})&nbsp;</span></td>
-          </tr>
-          <tr>
-            <td>Receiver Coordinates:</td>
-            <td><span>({{model.receiver.xValue}}/{{model.receiver.yValue}}/{{model.receiver.zValue}})</span></td>
-          </tr>
-          <tr>
-            <td>Layout:</td>
-            <td>
-              <lfs-layout datamodel="model"></lfs-layout>
-            </td>
-          </tr>
-        </table>        
+        <lfs-request-detail request="request"></lfs-request-detail>        
       <div class="panel-footer">
         <lfs-navbar submit-fn="submit"></lfs-navbar>
       </div>
