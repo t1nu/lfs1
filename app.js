@@ -10,7 +10,7 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 // app.use(express.json()); 
 
 var pg = require('pg');
-var connectionString = 'postgres://dbAdmin:dbadminasdfasdf82@mhdbinstance.cyvr2owy5pvv.eu-west-1.rds.amazonaws.com:5432/lfs';
+var connectionString = 'postgres://dbAdmin:asdfasdf@mhdbinstance.cyvr2owy5pvv.eu-west-1.rds.amazonaws.com:5432/lfs';
 
 app.get('/test', function (req, res) {
   res.send('Hello World!');
@@ -69,7 +69,6 @@ app.post('/requestList', function(req, res) {
 
         // SQL Query > Select Data
         var query = client.query("INSERT INTO lfs_request(model, request_user) VALUES ($1, $2)", [data.model, data.request_user]);
-        // var query = client.query("INSERT INTO lfs_request(model, request_user, request_id) VALUES ($1, $2, $3)", [data.model, data.request_user, data.request_id]);
 
       // SQL Query > Select Data
         var query = client.query("SELECT request_id, request_user, model FROM lfs_request");
