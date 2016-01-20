@@ -19,10 +19,9 @@ app.get('/requestList', function(req, res) {
           return res.status(500).json({ success: false, data: err});
         }
 
-        var query = client.query("SELECT request_id, request_user, model FROM lfs_request");
+        var query = client.query("SELECT request_id, request_user as user, model, timestamp_creation creationDate FROM lfs_request");
 
         query.on('row', function(row) {
-            // console.log('id: "%d" user:"%s" model:"%s"', row.request_id, row.request_user, row.model);
             results.push(row);
         });
 
@@ -47,7 +46,7 @@ app.post('/requestList', function(req, res) {
 
         var query = client.query("INSERT INTO lfs_request(model, request_user) VALUES ($1, $2)", [data.model, data.request_user]);
 
-        var query = client.query("SELECT request_id, request_user, model FROM lfs_request");
+        var query = client.query("SELECT request_id, request_user as user2, model FROM lfs_request");
 
         query.on('row', function(row) {
             results.push(row);

@@ -15,13 +15,13 @@ phonecatControllers.controller('HomeCtrl', ['$scope', '$location', 'Datamodel',
 
 phonecatControllers.controller('RequestStepUserCtrl', ['$scope', 'Datamodel',
   function($scope, Datamodel) {
-    $scope.user = Datamodel.user;
+    $scope.user = Datamodel.request.user;
   }
 ]);
 
 phonecatControllers.controller('RequestStepLayoutCtrl', ['$scope', 'Datamodel',
   function($scope, Datamodel) {
-    $scope.model = Datamodel.model;
+    $scope.model = Datamodel.request.model;
 
     $scope.onAddCoordinate = function(c) {
       $scope.model.coordinates.push(angular.copy(c));
@@ -40,7 +40,7 @@ phonecatControllers.controller('RequestStepLayoutCtrl', ['$scope', 'Datamodel',
 
 phonecatControllers.controller('RequestStepSenderReceiverCtrl', ['$scope', 'Datamodel',
   function($scope, Datamodel) {
-    $scope.model = Datamodel.model;
+    $scope.model = Datamodel.request.model;
 
     $scope.onAddSource = function(c) {
       $scope.model.sources.push(angular.copy(c));
@@ -60,21 +60,17 @@ phonecatControllers.controller('RequestStepSenderReceiverCtrl', ['$scope', 'Data
 
 phonecatControllers.controller('RequestStepConfirmCtrl', ['$scope', '$location', 'Datamodel', 'RestService',
   function($scope, $location, Datamodel, RestService) {
-    $scope.model = Datamodel.model;
-    $scope.user = Datamodel.user;
-
-    $scope.request = {
-      "user": $scope.user,
-      "model": $scope.model
-    };
+    $scope.model = Datamodel.request.model;
+    $scope.user = Datamodel.request.user;
+    $scope.request = Datamodel.request;
 
     $scope.submit = function() {
       console.log('ctrl submit!');
-      var request = {
+      var httpRequest = {
         "request_user": $scope.user,
         "model": $scope.model
       };
-      RestService.postRequest(request).then(function() {
+      RestService.postRequest(httpRequest).then(function() {
         $location.path('/home');
       });
     }
@@ -97,8 +93,6 @@ phonecatControllers.controller('RequestDetailCtrl', ['$scope', '$routeParams', '
     Datamodel.getRequestById($routeParams.requestId).then(function(request) {
       console.log('getRequestById');
       $scope.request = request;
-      // $scope.request.model = request.model;
-      // $scope.request.user = request.request_user;
     })
   }
 ]);

@@ -9,7 +9,7 @@ angular.module('phonecatDirectives').directive('lfsRequestDetail', ['$location',
     link: function(scope, element, attrs, tabsCtrl) {
       scope.$watch('request', function() {
         scope.model = scope.request.model;
-        scope.user = scope.request.request_user;
+        scope.user = scope.request.user;
       });
     },
     templateUrl: 'partials/lfs-request-detail.html'

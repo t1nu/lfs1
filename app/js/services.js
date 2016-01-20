@@ -30,47 +30,17 @@ phonecatServices.factory('Datamodel', ['RestService', '$q',
       }
     };
 
+    var request = {};
     var initRequest = function() {
       state.currentState = 0;
+
+      request.model = {
+          "coordinates": [],
+          "sources": []
+        };
+      request.user = {};
     }
-    // var user = {};
-    // var model = {      
-    //   "coordinates": [],
-    //   "sources": []
-    // };
-    var model = {
-      "roomheight": 344,
-      "coordinates": {},
-      "sources": []
-    };
-    var user = {
-      "username": "john",
-      "email": "john@gmail.com"
-    };
-
-    model.coordinates = [{
-      "xValue": "0",
-      "yValue": "0"
-    }, {
-      "xValue": "120",
-      "yValue": "0"
-    }, {
-      "xValue": "120",
-      "yValue": "60"
-    }, {
-      "xValue": "220",
-      "yValue": "60"
-    }, {
-      "xValue": "220",
-      "yValue": "260"
-    }, {
-      "xValue": "120",
-      "yValue": "260"
-    }, {
-      "xValue": "0",
-      "yValue": "0"
-    }];
-
+    
     var list = [];
 
     var getRequestList = function() {
@@ -93,22 +63,21 @@ phonecatServices.factory('Datamodel', ['RestService', '$q',
     var getRequestById = function(id) {
       var deferred = $q.defer();
       var promise = deferred.promise;
-      
+
       getRequestList().then(function(list) {
         for (var i = 0; i < list.length; i++) {
           if (list[i].request_id == id) {
             deferred.resolve(list[i]);
           }
         }
-      }, function(){
+      }, function() {
         deferred.reject();
       });
       return promise;
     }
 
     return {
-      model: model,
-      user: user,
+      request: request,
       state: state,
       initRequest: initRequest,
       getRequestList: getRequestList,
