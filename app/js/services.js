@@ -30,6 +30,9 @@ phonecatServices.factory('Datamodel', ['RestService', '$q',
       }
     };
 
+    var initRequest = function() {
+      state.currentState = 0;
+    }
     // var user = {};
     // var model = {      
     //   "coordinates": [],
@@ -107,6 +110,7 @@ phonecatServices.factory('Datamodel', ['RestService', '$q',
       model: model,
       user: user,
       state: state,
+      initRequest: initRequest,
       getRequestList: getRequestList,
       getRequestById: getRequestById
     };

@@ -3,11 +3,11 @@
 angular.module('phonecatServices').factory('RestService', ['$http', function($http) {
 
   var postRequest = function(request) {
-    $http({
+    return $http({
       url: '/requestList',
       method: "POST",
       data: request
-    })
+    });
   };
 
   var getRequestList = function() {

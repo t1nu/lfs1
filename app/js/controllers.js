@@ -4,9 +4,12 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('HomeCtrl', ['$scope', 'Datamodel',
-  function($scope, Datamodel) {
-    Datamodel.loadData();
+phonecatControllers.controller('HomeCtrl', ['$scope', '$location', 'Datamodel',
+  function($scope, $location, Datamodel) {
+    $scope.initRequest = function() {
+      Datamodel.initRequest();
+      $location.path('/requestStepUser');
+    }
   }
 ]);
 
@@ -55,8 +58,8 @@ phonecatControllers.controller('RequestStepSenderReceiverCtrl', ['$scope', 'Data
   }
 ]);
 
-phonecatControllers.controller('RequestStepConfirmCtrl', ['$scope', 'Datamodel', 'RestService',
-  function($scope, Datamodel, RestService) {
+phonecatControllers.controller('RequestStepConfirmCtrl', ['$scope', '$location', 'Datamodel', 'RestService',
+  function($scope, $location, Datamodel, RestService) {
     $scope.model = Datamodel.model;
     $scope.user = Datamodel.user;
 
@@ -65,15 +68,16 @@ phonecatControllers.controller('RequestStepConfirmCtrl', ['$scope', 'Datamodel',
       "model": $scope.model
     };
 
-    // $scope.submit = function(){
-    console.log('ctrl submit!')
-    var request = {
-      "request_id": 1001,
-      "request_user": $scope.user,
-      "model": $scope.model
-    };
-    RestService.postRequest(request);
-    // }
+    $scope.submit = function() {
+      console.log('ctrl submit!');
+      var request = {
+        "request_user": $scope.user,
+        "model": $scope.model
+      };
+      RestService.postRequest(request).then(function() {
+        $location.path('/home');
+      });
+    }
   }
 ]);
 
@@ -90,10 +94,11 @@ phonecatControllers.controller('RequestDetailCtrl', ['$scope', '$routeParams', '
     console.log($routeParams.requestId);
     $scope.request = {};
     $scope.requestId = $routeParams.requestId;
-    Datamodel.getRequestById($routeParams.requestId).then(function(request){
+    Datamodel.getRequestById($routeParams.requestId).then(function(request) {
+      console.log('getRequestById');
       $scope.request = request;
-      $scope.model = request.model;
-      $scope.user = request.request_user;
+      // $scope.request.model = request.model;
+      // $scope.request.user = request.request_user;
     })
   }
 ]);
