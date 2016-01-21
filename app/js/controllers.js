@@ -24,7 +24,27 @@ phonecatControllers.controller('RequestStepLayoutCtrl', ['$scope', 'Datamodel',
     $scope.model = Datamodel.request.model;
 
     $scope.onAddCoordinate = function(c) {
-      $scope.model.coordinates.push(angular.copy(c));
+      console.log(!$scope.flayout.c1.$error);
+      console.log(!$scope.flayout.c2.$error);
+      if (!$scope.flayout.c1.$error.min) {
+        if (!$scope.flayout.c2.$error.min) {
+          c.xValue = c.xValue || 0;
+          c.yValue = c.yValue || 0;
+          $scope.model.coordinates.push(angular.copy(c));
+        }
+      }
+    }
+    
+    $scope.disableAddCoordinate = function () {
+      if (($scope.flayout.c1.$error.length + $scope.flayout.c2.$error.length) > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    
+    $scope.isValidlayout = function() {
+      return $scope.model.coordinates.length > 2;
     }
 
     $scope.onDelCoordinate = function(c) {

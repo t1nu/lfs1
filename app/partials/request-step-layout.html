@@ -10,20 +10,33 @@
             <p>
               Define the layout of your room. All values in centimetres.
             </p>
-            <div class="form-group">
-              <label>Room Height:</label>
-              <input style="width:100px" class="form-control" type="number" ng-model="model.roomheight">
-            </div>
-            <div class="form-group">
-              <label>Layout: </label>
-              <div class="input-group">
-                <span class="input-group-addon">x:</span>
-                <input class="form-control" type="number" ng-model="coordinate.xValue">
-                <span class="input-group-addon">y:</span>
-                <input class="form-control" type="number" ng-model="coordinate.yValue">
-                <span class="input-group-btn"><button class="btn btn-primary" ng-click="onAddCoordinate(coordinate)">Add</button></span>
+            <form name="fheight">
+              <div class="form-group">
+                <label>Room Height:</label>
+                <input style="width:100px" class="form-control" type="number" ng-model="model.roomheight" min="0" required>
               </div>
-            </div>
+            </form>
+            <form name="flayout">
+              <div class="form-group">
+                <label>Layout: </label>
+                <div class="input-group">
+                  <span class="input-group-addon">x:</span>
+                  <input name="c1" class="form-control" type="number" ng-model="coordinate.xValue" min="0" required/>
+
+                  <span class="input-group-addon">y:</span>
+                  <input name="c2" class="form-control" type="number" ng-model="coordinate.yValue" min="0" required/>
+
+                  <span class="input-group-btn"><button class="btn btn-primary" ng-click="onAddCoordinate(coordinate)" ng-disabled="!flayout.$valid">Add</button></span>
+                </div>
+                <span class="error" ng-show="!!flayout.c1.$error.min">only positive values!</span>
+                <span class="error" ng-show="!!flayout.c2.$error.min">only positive values!</span>
+                <pre>flayout.c1.$error: {{flayout.c1.$error}}</pre>
+                <pre>flayout.c2.$error: {{flayout.c2.$error}}</pre>
+                <pre>!!flayout.$error: {{!!flayout.$error}}</pre>
+                <pre>!!flayout.$valid: {{!!flayout.$valid}}</pre>
+                <pre>!!fheight.$valid: {{!!fheight.$valid}}</pre>
+              </div>
+            </form>
           </div>
 
           <div>
@@ -39,9 +52,9 @@
           </div>
 
         </div>
-        
+
         <div class="panel-footer">
-          <lfs-navbar></lfs-navbar>
+          <lfs-navbar next-disabled="!isValidlayout() || !fheight.$valid"></lfs-navbar>
         </div>
       </div>
     </div>

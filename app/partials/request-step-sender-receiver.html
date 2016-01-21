@@ -12,18 +12,23 @@
           </p>
 
           <div class="form">
+            <form name="fsendrec">
 
             <div class="form-group">
               <label>Sources: </label>
               <div class="input-group">
                 <span class="input-group-addon">x:</span>
-                <input class="form-control" type="number" ng-model="coordinate.xValue">
+                <input name="s1" class="form-control" type="number" ng-model="coordinate.xValue" min="0">
                 <span class="input-group-addon">y:</span>
-                <input class="form-control" type="number" ng-model="coordinate.yValue">
+                <input name="s2" class="form-control" type="number" ng-model="coordinate.yValue" min="0">
                 <span class="input-group-addon">z:</span>
-                <input class="form-control" type="number" ng-model="coordinate.zValue">
+                <input name="s3" class="form-control" type="number" ng-model="coordinate.zValue" min="0">
                 <span class="input-group-btn"><button class="btn btn-primary" ng-click="onAddSource(coordinate)">Add</button></span>
               </div>
+              <span class="error" ng-show="!!fsendrec.s1.$error.min">only positive values!</span>
+              <span class="error" ng-show="!!fsendrec.s2.$error.min">only positive values!</span>
+              <span class="error" ng-show="!!fsendrec.s3.$error.min">only positive values!</span>
+
 
               <div>
                 <span ng-repeat="c in model.sources">
@@ -38,13 +43,16 @@
               <label>Receiver: </label>
               <div class="input-group">
                 <span class="input-group-addon">x:</span>
-                <input class="form-control" type="number" ng-model="receiver.xValue">
+                <input name="r1" class="form-control" type="number" ng-model="receiver.xValue" min="0">
                 <span class="input-group-addon">y:</span>
-                <input class="form-control" type="number" ng-model="receiver.yValue">
+                <input name="r2" class="form-control" type="number" ng-model="receiver.yValue" min="0">
                 <span class="input-group-addon">z:</span>
-                <input class="form-control" type="number" ng-model="receiver.zValue">
+                <input name="r3" class="form-control" type="number" ng-model="receiver.zValue" min="0">
                 <span class="input-group-btn"><button class="btn btn-primary" ng-click="onSetReceiver(receiver)">Set</button></span>
               </div>
+              <span class="error" ng-show="!!fsendrec.r1.$error.min">only positive values!</span>
+              <span class="error" ng-show="!!fsendrec.r2.$error.min">only positive values!</span>
+              <span class="error" ng-show="!!fsendrec.r3.$error.min">only positive values!</span>
             </div>
           </div>
         </div>

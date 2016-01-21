@@ -13,9 +13,11 @@ phonecatDirectives.directive('lfsLayout', function() {
         scope.xMax = 405;
         scope.yMax = 305;
         var padding = 20;
-        var s = "M0 0";
-        if (angular.isDefined(arr)) {
-          for (var i = 0; i < arr.length; i++) {
+        var s = "";
+        if (angular.isDefined(arr) && (arr.length > 2)) {
+          
+          s = s + 'M' + arr[0].xValue + ' ' + arr[0].yValue;
+          for (var i = 1; i < arr.length; i++) {
             var item = arr[i];
             s = s + ' L' + arr[i].xValue + ',' + arr[i].yValue;
             if (item.xValue > scope.xMax) {
@@ -25,6 +27,7 @@ phonecatDirectives.directive('lfsLayout', function() {
               scope.yMax = item.yValue;
             }
           }
+          s = s + ' L' + arr[0].xValue + ',' + arr[0].yValue;
         }
 
         scope.layoutStyle = "width:" + (scope.xMax + padding) + "px;height:" + (scope.yMax + padding) + "px";

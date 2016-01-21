@@ -4,7 +4,8 @@ angular.module('phonecatDirectives').directive('lfsNavbar', ['$location', 'Datam
   return {
     restrict: 'E',
     scope: {
-      submitFn: '='
+      submitFn: '=',
+      nextDisabled: '='
     },
     link: function(scope, element, attrs, tabsCtrl) {
       scope.isNotFirstState = function() {
