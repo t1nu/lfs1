@@ -13,7 +13,8 @@
             <form name="fheight">
               <div class="form-group">
                 <label>Room Height:</label>
-                <input style="width:100px" class="form-control" type="number" ng-model="model.roomheight" min="0" required>
+                <input style="width:100px" name="h" class="form-control" type="number" ng-model="model.roomheight" min="0" required>
+                <span class="error" ng-show="fheight.$dirty && fheight.h.$error.required">required!</span>
               </div>
             </form>
             <form name="flayout">
@@ -28,13 +29,8 @@
 
                   <span class="input-group-btn"><button class="btn btn-primary" ng-click="onAddCoordinate(coordinate)" ng-disabled="!flayout.$valid">Add</button></span>
                 </div>
-                <span class="error" ng-show="!!flayout.c1.$error.min">only positive values!</span>
-                <span class="error" ng-show="!!flayout.c2.$error.min">only positive values!</span>
-                <pre>flayout.c1.$error: {{flayout.c1.$error}}</pre>
-                <pre>flayout.c2.$error: {{flayout.c2.$error}}</pre>
-                <pre>!!flayout.$error: {{!!flayout.$error}}</pre>
-                <pre>!!flayout.$valid: {{!!flayout.$valid}}</pre>
-                <pre>!!fheight.$valid: {{!!fheight.$valid}}</pre>
+                <span class="error" ng-show="!!flayout.c1.$error.min">x: only positive values!</span>
+                <span class="error" ng-show="!!flayout.c2.$error.min">y: only positive values!</span>
               </div>
             </form>
           </div>

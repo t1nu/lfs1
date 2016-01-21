@@ -6,54 +6,64 @@
           <h3 class="panel-title">Sender and Receiver</h3>
         </div>
         <div class="panel-body">
-          
+
           <p>
-            Define position (x/y) and height (z) of one or more sender and one receiver. 
+            Define position (x/y) and height (z) of one or more sender and one receiver.
           </p>
 
           <div class="form">
-            <form name="fsendrec">
+            <form name="fsend">
 
-            <div class="form-group">
-              <label>Sources: </label>
-              <div class="input-group">
-                <span class="input-group-addon">x:</span>
-                <input name="s1" class="form-control" type="number" ng-model="coordinate.xValue" min="0">
-                <span class="input-group-addon">y:</span>
-                <input name="s2" class="form-control" type="number" ng-model="coordinate.yValue" min="0">
-                <span class="input-group-addon">z:</span>
-                <input name="s3" class="form-control" type="number" ng-model="coordinate.zValue" min="0">
-                <span class="input-group-btn"><button class="btn btn-primary" ng-click="onAddSource(coordinate)">Add</button></span>
-              </div>
-              <span class="error" ng-show="!!fsendrec.s1.$error.min">only positive values!</span>
-              <span class="error" ng-show="!!fsendrec.s2.$error.min">only positive values!</span>
-              <span class="error" ng-show="!!fsendrec.s3.$error.min">only positive values!</span>
+              <div class="form-group">
+                <label>Sources: </label>
+                <div class="input-group">
+                  <span class="input-group-addon">x:</span>
+                  <input name="s1" class="form-control" type="number" ng-model="coordinate.xValue" min="0" required>
+                  <span class="input-group-addon">y:</span>
+                  <input name="s2" class="form-control" type="number" ng-model="coordinate.yValue" min="0" required>
+                  <span class="input-group-addon">z:</span>
+                  <input name="s3" class="form-control" type="number" ng-model="coordinate.zValue" min="0" required>
+                  <span class="input-group-btn"><button class="btn btn-primary" ng-click="onAddSource(coordinate)" ng-disabled="!fsend.$valid">Add</button></span>
+                </div>
+                <span class="error" ng-show="!!fsend.s1.$error.min">x: only positive values!</span>
+                <span class="error" ng-show="!!fsend.s2.$error.min">y: only positive values!</span>
+                <span class="error" ng-show="!!fsend.s3.$error.min">z: only positive values!</span>
 
 
-              <div>
-                <span ng-repeat="c in model.sources">
+                <div>
+                  <span ng-repeat="c in model.sources">
         <button type="button" style="margin-top:5px" class="btn btn-default btn-sm" ng-click="onDelSource(c)">
           ( {{c.xValue}} / {{c.yValue}} / {{c.zValue}}) <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </button>
-                </span>
+                  </button>
+                  </span>
+                </div>
+                <div ng-show="isPointOutside">
+                  Coordinates have to be inside room!
+                </div>
               </div>
-            </div>
+            </form>
 
-            <div class="form-group">
-              <label>Receiver: </label>
-              <div class="input-group">
-                <span class="input-group-addon">x:</span>
-                <input name="r1" class="form-control" type="number" ng-model="receiver.xValue" min="0">
-                <span class="input-group-addon">y:</span>
-                <input name="r2" class="form-control" type="number" ng-model="receiver.yValue" min="0">
-                <span class="input-group-addon">z:</span>
-                <input name="r3" class="form-control" type="number" ng-model="receiver.zValue" min="0">
-                <span class="input-group-btn"><button class="btn btn-primary" ng-click="onSetReceiver(receiver)">Set</button></span>
+            <form name="frec">
+              <div class="form-group">
+                <label>Receiver: </label>
+                <div class="input-group">
+                  <span class="input-group-addon">x:</span>
+                  <input name="r1" class="form-control" type="number" ng-model="receiver.xValue" min="0" required>
+                  <span class="input-group-addon">y:</span>
+                  <input name="r2" class="form-control" type="number" ng-model="receiver.yValue" min="0" required>
+                  <span class="input-group-addon">z:</span>
+                  <input name="r3" class="form-control" type="number" ng-model="receiver.zValue" min="0" required>
+                  <span class="input-group-btn"><button class="btn btn-primary" ng-click="onSetReceiver(receiver)" ng-disabled="!frec.$valid">Set</button></span>
+                </div>
+                <span class="error" ng-show="!!frec.r1.$error.min">x: only positive values!</span>
+                <span class="error" ng-show="!!frec.r2.$error.min">y: only positive values!</span>
+                <span class="error" ng-show="!!frec.r3.$error.min">z: only positive values!</span>
+                <div ng-show="isRecPointOutside">
+                  Coordinates have to be inside room!
+                </div>
+
               </div>
-              <span class="error" ng-show="!!fsendrec.r1.$error.min">only positive values!</span>
-              <span class="error" ng-show="!!fsendrec.r2.$error.min">only positive values!</span>
-              <span class="error" ng-show="!!fsendrec.r3.$error.min">only positive values!</span>
-            </div>
+            </form>
           </div>
         </div>
 

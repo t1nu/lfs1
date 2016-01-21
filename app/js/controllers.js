@@ -8,7 +8,7 @@ phonecatControllers.controller('HomeCtrl', ['$scope', '$location', 'Datamodel',
   function($scope, $location, Datamodel) {
     $scope.initRequest = function() {
       Datamodel.initRequest();
-      $location.path('/requestStepUser');
+      $location.path('/requestStepSenderReceiver');
     }
   }
 ]);
@@ -61,9 +61,16 @@ phonecatControllers.controller('RequestStepLayoutCtrl', ['$scope', 'Datamodel',
 phonecatControllers.controller('RequestStepSenderReceiverCtrl', ['$scope', 'Datamodel',
   function($scope, Datamodel) {
     $scope.model = Datamodel.request.model;
+    $scope.isPointOutside = false;
+    $scope.isRecPointOutside = false;
 
     $scope.onAddSource = function(c) {
-      $scope.model.sources.push(angular.copy(c));
+      if (Datamodel.isInPolygon(c)) {
+        $scope.isPointOutside = false;
+        $scope.model.sources.push(angular.copy(c));
+      } else {
+        $scope.isPointOutside = true;
+      }
     }
 
     $scope.onDelSource = function(c) {
@@ -72,7 +79,12 @@ phonecatControllers.controller('RequestStepSenderReceiverCtrl', ['$scope', 'Data
     }
 
     $scope.onSetReceiver = function(c) {
-      $scope.model.receiver = angular.copy(c);
+      if (Datamodel.isInPolygon(c)) {
+        $scope.isRecPointOutside = false;
+        $scope.model.receiver = angular.copy(c);
+      } else {
+        $scope.isRecPointOutside = true;
+      }
     }
 
   }

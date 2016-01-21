@@ -35,13 +35,55 @@ phonecatServices.factory('Datamodel', ['RestService', '$q',
       state.currentState = 0;
 
       request.model = {
-          "coordinates": [],
-          "sources": []
-        };
+        "coordinates": [{
+          "xValue": 120,
+          "yValue": 0
+        }, {
+          "xValue": 120,
+          "yValue": 180
+        }, {
+          "xValue": 0,
+          "yValue": 180
+        }, {
+          "xValue": 0,
+          "yValue": 0
+        }],
+        "sources": []
+      };
       request.user = {};
     }
-    
+
     var list = [];
+
+    var isInPolygon = function(c) {
+      var p = c;
+      var polygon = request.model.coordinates;
+
+      var isInside = false;
+      var minX = polygon[0].x, maxX = polygon[0].x;
+      var minY = polygon[0].y, maxY = polygon[0].y;
+      for (var n = 1; n < polygon.length; n++) {
+        var q = polygon[n];
+        minX = Math.min(q.x, minX);
+        maxX = Math.max(q.x, maxX);
+        minY = Math.min(q.y, minY);
+        maxY = Math.max(q.y, maxY);
+      }
+
+      if (p.x < minX || p.x > maxX || p.y < minY || p.y > maxY) {
+        return false;
+      }
+
+      var i = 0, j = polygon.length - 1;
+      for (i, j; i < polygon.length; j = i++) {
+        if ((polygon[i].yValue > p.yValue) != (polygon[j].yValue > p.yValue) &&
+          p.xValue < (polygon[j].xValue - polygon[i].xValue) * (p.yValue - polygon[i].yValue) / (polygon[j].yValue - polygon[i].yValue) + polygon[i].xValue) {
+          isInside = !isInside;
+        }
+      }
+
+      return isInside;
+    }
 
     var getRequestList = function() {
       var deferred = $q.defer();
@@ -80,6 +122,7 @@ phonecatServices.factory('Datamodel', ['RestService', '$q',
       request: request,
       state: state,
       initRequest: initRequest,
+      isInPolygon: isInPolygon,
       getRequestList: getRequestList,
       getRequestById: getRequestById
     };
