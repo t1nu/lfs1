@@ -8,7 +8,8 @@ phonecatControllers.controller('HomeCtrl', ['$scope', '$location', 'Datamodel',
   function($scope, $location, Datamodel) {
     $scope.initRequest = function() {
       Datamodel.initRequest();
-      $location.path('/requestStepSenderReceiver');
+      // $location.path('/requestStepSenderReceiver');
+      $location.path('/requestStepUser');
     }
   }
 ]);
@@ -72,6 +73,11 @@ phonecatControllers.controller('RequestStepSenderReceiverCtrl', ['$scope', 'Data
         $scope.isPointOutside = true;
       }
     }
+     
+    $scope.isValidlayout = function() {
+      return true;
+    }
+
 
     $scope.onDelSource = function(c) {
       var index = $scope.model.sources.indexOf(c);
