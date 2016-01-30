@@ -13,6 +13,16 @@ phonecatControllers.controller('HomeCtrl', ['$scope', '$state', 'Datamodel',
   }
 ]);
 
+phonecatControllers.controller('TheoryCtrl', ['$scope', '$state', 'Datamodel',
+  function($scope, $state, Datamodel) { 
+  new WOW().init();   }
+]);
+
+phonecatControllers.controller('RequestInitCtrl', ['$scope', 'Datamodel',
+  function($scope, Datamodel) {
+    $scope.user = Datamodel.request.user;
+  }
+]);
 phonecatControllers.controller('RequestStepUserCtrl', ['$scope', 'Datamodel',
   function($scope, Datamodel) {
     $scope.user = Datamodel.request.user;
