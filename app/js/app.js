@@ -3,7 +3,7 @@
 /* App Module */
 
 var phonecatApp = angular.module('phonecatApp', [
-  'ngRoute',
+  'ui.router',
   'phonecatAnimations',
 
   'phonecatControllers',
@@ -12,38 +12,42 @@ var phonecatApp = angular.module('phonecatApp', [
   'phonecatDirectives'
 ]);
 
-phonecatApp.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      when('/home', {
-        templateUrl: 'partials/home.html',
-        controller: 'HomeCtrl'
-      }).
-      when('/requestStepUser', {
-        templateUrl: 'partials/request-step-user.html',
-        controller: 'RequestStepUserCtrl'
-      }).
-      when('/requestStepLayout', {
-        templateUrl: 'partials/request-step-layout.html',
-        controller: 'RequestStepLayoutCtrl'
-      }).
-      when('/requestStepSenderReceiver', {
-        templateUrl: 'partials/request-step-sender-receiver.html',
-        controller: 'RequestStepSenderReceiverCtrl'
-      }).
-      when('/requestStepConfirm', {
-        templateUrl: 'partials/request-step-confirm.html',
-        controller: 'RequestStepConfirmCtrl'
-      }).
-      when('/requestList', {
-        templateUrl: 'partials/request-list.html',
-        controller: 'RequestListCtrl'
-      }).
-      when('/requestDetail/:requestId', {
-        templateUrl: 'partials/request-detail.html',
-        controller: 'RequestDetailCtrl'
-      }).
-      otherwise({
-        redirectTo: '/home'
-      });
-  }]);
+phonecatApp.config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/home');
+    $stateProvider
+        .state('home', {
+            url: '/home',
+            templateUrl: 'partials/home.html',
+            controller: 'HomeCtrl'
+        })
+        .state('requestStepUser', {
+            url: '/requestStepUser',
+            templateUrl: 'partials/request-step-user.html',
+            controller: 'RequestStepUserCtrl'
+        })
+        .state('requestStepLayout', {
+            url: '/requestStepLayout',
+            templateUrl: 'partials/request-step-layout.html',
+            controller: 'RequestStepLayoutCtrl'
+        })
+        .state('requestStepSenderReceiver', {
+            url: '/requestStepSenderReceiver',
+            templateUrl: 'partials/request-step-sender-receiver.html',
+            controller: 'RequestStepSenderReceiverCtrl'
+        })
+        .state('requestStepConfirm', {
+            url: '/requestStepConfirm',
+            templateUrl: 'partials/request-step-confirm.html',
+            controller: 'RequestStepConfirmCtrl'
+        })
+        .state('requestList', {
+            url: '/requestList',
+            templateUrl: 'partials/request-list.html',
+            controller: 'RequestListCtrl'
+        })
+        .state('requestDetail', {
+            url: '/requestDetail/:requestId',
+            templateUrl: 'partials/request-detail.html',
+            controller: 'RequestDetailCtrl'
+        })
+}); 

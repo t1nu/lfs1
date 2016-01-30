@@ -4,12 +4,11 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('HomeCtrl', ['$scope', '$location', 'Datamodel',
-  function($scope, $location, Datamodel) {
+phonecatControllers.controller('HomeCtrl', ['$scope', '$state', 'Datamodel',
+  function($scope, $state, Datamodel) {
     $scope.initRequest = function() {
       Datamodel.initRequest();
-      // $location.path('/requestStepSenderReceiver');
-      $location.path('/requestStepUser');
+      $state.go('requestStepUser');
     }
   }
 ]);
@@ -115,20 +114,20 @@ phonecatControllers.controller('RequestStepConfirmCtrl', ['$scope', '$location',
   }
 ]);
 
-phonecatControllers.controller('RequestListCtrl', ['$scope', '$routeParams', 'Datamodel',
-  function($scope, $routeParams, Datamodel) {
+phonecatControllers.controller('RequestListCtrl', ['$scope', 'Datamodel',
+  function($scope, Datamodel) {
     $scope.list = [];
     Datamodel.getRequestList().then(function(list) {
       $scope.list = list;
     });
   }
 ]);
-phonecatControllers.controller('RequestDetailCtrl', ['$scope', '$routeParams', 'Datamodel',
-  function($scope, $routeParams, Datamodel) {
-    console.log($routeParams.requestId);
+phonecatControllers.controller('RequestDetailCtrl', ['$scope', '$stateParams', 'Datamodel',
+  function($scope, $stateParams, Datamodel) {
+    console.log($stateParams.requestId);
     $scope.request = {};
-    $scope.requestId = $routeParams.requestId;
-    Datamodel.getRequestById($routeParams.requestId).then(function(request) {
+    $scope.requestId = $stateParams.requestId;
+    Datamodel.getRequestById($stateParams.requestId).then(function(request) {
       console.log('getRequestById');
       $scope.request = request;
     })
